@@ -1,5 +1,6 @@
 from operator import truediv
 from tkinter import *
+import json
 
 programa = Tk()
 programa.title("BBDD")
@@ -8,72 +9,80 @@ programa.title("BBDD")
 
 ventanaPrincipal = Frame(programa)
 ventanaPrincipal.pack()
-
+##------------------- "CSS"
+labelwidth = 15
 ##------------------- VENTANA CREAR CLIENTE
 def crear():
     ventanaNuevo = Tk()
     ## -------- FORMA VENTANA CREAR CLIENTE:
-    #----------Linea 0
+    #----------Linea 0 - IMAGEN CORPORATIVA (PROB DE PERRO)
 
-    #----------Linea 1
-    nombreLabel = Label(ventanaNuevo, text="Nombre cliente :")
-    nombreLabel.grid(row=1, column=0)
+    #----------Linea 1 - CLIENTE
+    nombreLabel = Label(ventanaNuevo, text="Nombre cliente :", anchor="e",width=labelwidth)
+    nombreLabel.grid(row=1, column=0,sticky="nesw")
     
-    nombreEntry = Entry(ventanaNuevo)
-    nombreEntry.grid(row=1,column=1, columnspan=4)
+    nombreEntry = Entry(ventanaNuevo,width=labelwidth*4)
+    nombreEntry.grid(row=1,column=1, columnspan=4,sticky="nesw")
 
-    dirLabel = Label(ventanaNuevo, text="Direccion :")
-    dirLabel.grid(row=1, column=5)
+    dirLabel = Label(ventanaNuevo, text="Direccion :", anchor="e",width=labelwidth)
+    dirLabel.grid(row=1, column=5,sticky="nesw")
 
-    dirEntry = Entry(ventanaNuevo)
-    dirEntry.grid(row=1, column=6, columnspan=4)
-    #----------Linea 2
-    movilLabel = Label(ventanaNuevo, text="Movil :")
-    movilLabel.grid(row=2, column=0)
+    dirEntry = Entry(ventanaNuevo,width=labelwidth*4)
+    dirEntry.grid(row=1, column=6, columnspan=4,sticky="nesw")
+    #----------Linea 2 - CLIENTE
+    movilLabel = Label(ventanaNuevo, text="Movil :", anchor="e",width=labelwidth)
+    movilLabel.grid(row=2, column=0,sticky="nesw")
 
-    movilEntry = Entry(ventanaNuevo)
-    movilEntry.grid(row=2, column=1, columnspan=4)
+    movilEntry = Entry(ventanaNuevo,width=labelwidth*4)
+    movilEntry.grid(row=2, column=1, columnspan=4,sticky="nesw")
 
-    tlfLabel = Label(ventanaNuevo, text="TLF :")
-    tlfLabel.grid(row=2, column=5)
+    tlfLabel = Label(ventanaNuevo, text="TLF :", anchor="e",width=labelwidth)
+    tlfLabel.grid(row=2, column=5,sticky="nesw")
 
-    tlfEntry = Entry(ventanaNuevo)
-    tlfEntry.grid(row=2, column=6, columnspan=4)
+    tlfEntry = Entry(ventanaNuevo,width=labelwidth*4)
+    tlfEntry.grid(row=2, column=6, columnspan=4,sticky="nesw")
 
-    #----------Linea 3
-    nperroLabel = Label(ventanaNuevo, text="Nombre Perro :")
-    nperroLabel.grid(row=3,column=0)
+    #----------Linea 3 - PERRO 
+    nperroLabel = Label(ventanaNuevo, text="Nombre Perro :", anchor="e",width=labelwidth)
+    nperroLabel.grid(row=3,column=0,sticky="nesw")
     
-    nperroEntry = Entry(ventanaNuevo)
-    nperroEntry.grid(row=3, column=1, columnspan=3)
+    nperroEntry = Entry(ventanaNuevo,width=labelwidth*3)
+    nperroEntry.grid(row=3, column=1, columnspan=3,sticky="nesw")
 
-    eperroLabel = Label(ventanaNuevo, text="Edad :")
-    eperroLabel.grid(row=3, column=5)
+    eperroLabel = Label(ventanaNuevo, text="Edad :", anchor="e",width=labelwidth)
+    eperroLabel.grid(row=3, column=5,sticky="nesw")
 
-    eperroEntry = Entry(ventanaNuevo)
-    eperroEntry.grid(row=3,column=6)
+    eperroEntry = Entry(ventanaNuevo,width=labelwidth)
+    eperroEntry.grid(row=3,column=6,sticky="nesw")
 
-    pperroLabel = Label(ventanaNuevo, text="Peso :")
-    pperroLabel.grid(row=3, column=7)
+    pperroLabel = Label(ventanaNuevo, text="Peso :", anchor="e",width=labelwidth)
+    pperroLabel.grid(row=3, column=7,sticky="nesw")
 
-    pperroEntry = Entry(ventanaNuevo)
-    pperroEntry.grid(row=3,column=8)
+    pperroEntry = Entry(ventanaNuevo,width=labelwidth)
+    pperroEntry.grid(row=3,column=8,sticky="nesw")
 
-    #----------Linea 4
-    rperroLabel = Label(ventanaNuevo, text="Raza :")
-    rperroLabel.grid(row=4, column=0)
+    #----------Linea 4 - PERRO 
+    rperroLabel = Label(ventanaNuevo, text="Raza :", anchor="e",width=labelwidth)
+    rperroLabel.grid(row=4, column=0,sticky="nesw")
 
-    rperroEntry = Entry(ventanaNuevo)
-    rperroEntry.grid(row=4, column=1, columnspan=2)
+    rperroEntry = Entry(ventanaNuevo,width=labelwidth*2)
+    rperroEntry.grid(row=4, column=1, columnspan=2,sticky="nesw")
 
-    tiempoLabel = Label(ventanaNuevo,text="Tiempo estimado :")
-    tiempoLabel.grid(row=4, column=5)
+    tiempoLabel = Label(ventanaNuevo,text="Tiempo estimado :", anchor="e",width=labelwidth)
+    tiempoLabel.grid(row=4, column=5,sticky="nesw")
 
-    tiempoEntry = Entry(ventanaNuevo)
-    tiempoEntry.grid(row=4, column=6, columnspan=2)
+    tiempoEntry = Entry(ventanaNuevo,width=labelwidth*2)
+    tiempoEntry.grid(row=4, column=6, columnspan=2,sticky="nesw")
 
-    #----------Linea 5
-    #----------Linea 6
+    #----------Linea 5 - COMENTARIOS ADICIONALES
+
+    comentariosText= Text(ventanaNuevo,width=labelwidth*7, height=5)
+    comentariosText.grid(row=5,column=0, columnspan=9,sticky="nesw")
+
+    comentariosScroll = Scrollbar(ventanaNuevo,command=comentariosText.yview)
+    comentariosScroll.grid(row=5,column=9,sticky="nesw")
+    comentariosText.config(yscrollcommand=comentariosScroll.set)
+    #----------Linea 6 - CONTROLES
 
 
 ##------------------- VENTANA BUSCAR CLIENTE
