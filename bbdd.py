@@ -84,6 +84,12 @@ def crear():
     comentariosText.config(yscrollcommand=comentariosScroll.set)
     #----------Linea 6 - CONTROLES
 
+    guardaButton = Button(ventanaNuevo, text="Guardar", width=labelwidth*2)
+    guardaButton.grid(row=6, column=3, columnspan=2)
+
+    cancelButton = Button(ventanaNuevo, text="Cancelar", width=labelwidth*2, command=lambda:Cerrar(ventanaNuevo))
+    cancelButton.grid(row=6,column=5, columnspan=2)
+
 
 ##------------------- VENTANA BUSCAR CLIENTE
 
