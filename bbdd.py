@@ -84,11 +84,23 @@ def crear():
     comentariosText.config(yscrollcommand=comentariosScroll.set)
     #----------Linea 6 - CONTROLES
 
-    guardaButton = Button(ventanaNuevo, text="Guardar", width=labelwidth*2)
+    guardaButton = Button(ventanaNuevo, text="Guardar", width=labelwidth*2, command=lambda:Guardar())
     guardaButton.grid(row=6, column=3, columnspan=2)
 
     cancelButton = Button(ventanaNuevo, text="Cancelar", width=labelwidth*2, command=lambda:Cerrar(ventanaNuevo))
     cancelButton.grid(row=6,column=5, columnspan=2)
+    
+    ## ---- FUNCION DE GUARDAR:
+    def Guardar():
+        datos = [nombreEntry.get(), dirEntry.get() ,movilEntry.get(),tlfEntry.get(),nperroEntry.get(),eperroEntry.get(),pperroEntry.get(),rperroEntry.get(),tiempoEntry.get(),comentariosText.get("1.0","end-1c")]
+        keyname = str(datos[4]) + "_" + str(datos[5]) + "_" + str(datos[0])
+        with open('data.json', "r") as f:
+            data = json.load(f)
+        data[keyname]={'Ncliente': datos[0], 'Dcliente': datos[1], 'Movil': datos[2], 'Telefono': datos[3],'Nperro': datos[4], 'Eperro': datos[5], 'Peso': datos[6], 'Raza': datos[7],'Tiempo': datos[8], 'Comentarios': datos[9]}
+        with open('data.json', 'w') as f:
+            json.dump(data, f, indent=4)
+        Cerrar(ventanaNuevo)
+
 
 
 ##------------------- VENTANA BUSCAR CLIENTE
@@ -103,11 +115,16 @@ def buscar():
     salir2button.grid(row=1, column=1, padx=5, pady=(20, 1))
 
 
-##------------------- FUNCIONES VENTANA PRINCIPAL
+##------------------- FUNCIONES DEL PROGRAMA
 
 
 def Cerrar(i):
     i.destroy()
+
+
+    
+
+
 
 
 ##------------------ CREACION VENTANA PRINCIPAL
